@@ -3,7 +3,8 @@
 - [MNIST For ML Beginners](https://www.tensorflow.org/tutorials/mnist/beginners/)
 - [Deep MNIST for Experts](https://www.tensorflow.org/tutorials/mnist/pros/)
 
-![screencast](https://cloud.githubusercontent.com/assets/80381/11339453/f04f885e-923c-11e5-8845-33c16978c54d.gif)
+![screencast](https://github.com/daassh/tensorflow-mnist/blob/master/demo.gif?raw=true)
+
 
 ### Requirement ###
 
