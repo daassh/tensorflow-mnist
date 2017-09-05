@@ -11,7 +11,8 @@
 - Python >=2.7 or >=3.4
   - TensorFlow >=1.0
 - Node >=6.9
-
+-  [Visual C++ Redistributable 2015 x64]
+- [Visual C++ Redistributable 2015 x64 For Windows](https://www.microsoft.com/en-us/download/confirmation.aspx?id=53587)
 
 ### How to run ###
 
