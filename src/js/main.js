@@ -9,6 +9,7 @@ class Main {
         this.canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
         this.canvas.addEventListener('mouseup',   this.onMouseUp.bind(this));
         this.canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
+        this.canvas.addEventListener('mouseout', this.onMouseOut.bind(this));
         this.initialize();
     }
     initialize() {
@@ -55,6 +56,10 @@ class Main {
             this.prev = curr;
         }
     }
+    onMouseOut() {
+        this.drawing = false;
+        this.drawInput();
+    }
     getPosition(clientX, clientY) {
         var rect = this.canvas.getBoundingClientRect();
         return {
@@ -87,33 +92,11 @@ class Main {
                 contentType: 'application/json',
                 data: JSON.stringify(inputs),
                 success: (data) => {
-                    for (let i = 0; i < 2; i++) {
-                        var max = 0;
-                        var max_index = 0;
-                        for (let j = 0; j < 10; j++) {
-                            var value = Math.round(data.results[i][j] * 1000);
-                            if (value > max) {
-                                max = value;
-                                max_index = j;
-                            }
-                            var digits = String(value).length;
-                            for (var k = 0; k < 3 - digits; k++) {
-                                value = '0' + value;
-                            }
-                            var text = '0.' + value;
-                            if (value > 999) {
-                                text = '1.000';
-                            }
-                            $('#output tr').eq(j + 1).find('td').eq(i).text(text);
-                        }
-                        for (let j = 0; j < 10; j++) {
-                            if (j === max_index) {
-                                $('#output tr').eq(j + 1).find('td').eq(i).addClass('success');
-                            } else {
-                                $('#output tr').eq(j + 1).find('td').eq(i).removeClass('success');
-                            }
-                        }
+                    console.log(data);
+                    for (let i = 0; i < 3; i++) {
+                        $('#output tr').eq(i + 1).find('td').eq(0).text(data.results[0][i]);
                     }
+                    $('#output tr').eq(1).find('td').eq(1).text(data.results[1][0]);
                 }
             });
         };

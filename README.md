@@ -17,7 +17,8 @@
 
     $ pip install -r requirements.txt
     $ npm install
-    $ gunicorn main:app --log-file=-
+    $ gunicorn main:app --log-file=- (mac or linux)
+    $ python main.py (windows)
 
 
 ### Deploy to Heroku ###
