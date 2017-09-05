@@ -14,9 +14,7 @@ def normalize_image(img):
 
 def center_image(img0, clas):
     _, (tl, br) = order_points(clas)
-    # 得到数据区
     img = np.zeros_like(img0)
-    #print(img.shape)
     for pos in clas:
         img[pos[0], pos[1]] = 255
     img = img[tl[0]: br[0] + 1, tl[1]: br[1] + 1]
@@ -28,14 +26,12 @@ def padding_img(img, board=0, resize=None):
     max_shape = max(img.shape)
     new_img = np.zeros((max_shape, max_shape), dtype='uint8')
     d = abs(x - y) // 2
-    # 居中图片
     if x > y:
         new_img[:, d: y + d] = img
     elif x < y:
         new_img[d: x + d, ] = img
     else:
         new_img = img
-    # 更改尺寸并加上边框
     if board != 0 and resize is not None:
         new_size = (resize[0] - 2 * board, resize[1] - 2 * board)
     if resize is not None:

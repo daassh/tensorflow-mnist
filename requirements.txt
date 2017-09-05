@@ -13,3 +13,4 @@ six==1.10.0
 tensorflow==1.0.0
 Werkzeug==0.11.15
 opencv-python==3.2.0.8
+path.py==10.3.1
