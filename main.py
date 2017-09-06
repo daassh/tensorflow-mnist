@@ -4,7 +4,7 @@ from flask import Flask, jsonify, render_template, request
 from fiximage import normalize_image
 from cnn import model
 
-x = tf.placeholder("float", [None, 784])
+
 sess = tf.Session()
 
 # restore trained data
@@ -40,6 +40,7 @@ def mnist():
     pred = sess.run(prediction_right_wrong, feed_dict={x: img.reshape(1, 784), keep_prob: 1.0})[0]
     return jsonify(results=[preds.tolist()[0], ['√' if int(pred)==1 else '×',]])
 
+    
 @app.route('/')
 def main():
     return render_template('index.html')
