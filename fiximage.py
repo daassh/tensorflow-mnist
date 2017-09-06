@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-from path import Path
 import cv2
 import numpy as np
-from collections import OrderedDict
 
 
 def normalize_image(img):
