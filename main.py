@@ -11,10 +11,10 @@ sess = tf.Session()
 with tf.variable_scope('model_number'):
     x_ = tf.placeholder(tf.float32, shape=[None, 784])
     keep_prob_ = tf.placeholder(tf.float32)
-    y_conv_number, variables_number = model.model_number(x_, keep_prob_)
+    y_conv_number, variables_number = model.model_number(x_, keep_prob_, False)
     _, predictions_number = tf.nn.top_k(y_conv_number, 3)
     
-saver = tf.train.Saver(variables_number)
+saver = tf.train.Saver(tf.global_variables())
 saver.restore(sess, "./cnn/model/model-number.ckpt")
     
 

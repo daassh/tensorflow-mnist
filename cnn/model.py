@@ -17,20 +17,20 @@ def max_pool_2x2(x):
     return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
 
-def model_number(x, keep_prob):
-    return convolutional(x, keep_prob, 51)
+def model_number(x, keep_prob, is_training=True):
+    return convolutional(x, keep_prob, 51, is_training)
      
 def model_right_wrong(x, keep_prob):
     return convolutional_right_wrong(x, keep_prob, 2)
     
-def convolutional(x, keep_prob, label_length):
+def convolutional(x, keep_prob, label_length, is_training=True):
 
     x_image = tf.reshape(x, [-1, 28, 28, 1])
 
     W_conv1 = weight_variable([3, 3, 1, 256])
     b_conv1 = bias_variable([256])
     h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
-    h_bn1   = tf.contrib.layers.batch_norm(h_conv1)
+    h_bn1   = tf.contrib.layers.batch_norm(h_conv1, is_training=is_training)
 
     W_conv2 = weight_variable([3, 3, 256, 128])
     b_conv2 = bias_variable([128])
@@ -40,7 +40,7 @@ def convolutional(x, keep_prob, label_length):
     W_conv3 = weight_variable([3, 3, 128, 128])
     b_conv3 = bias_variable([128])
     h_conv3 = tf.nn.relu(conv2d(h_pool2, W_conv3) + b_conv3)
-    h_bn3   = tf.contrib.layers.batch_norm(h_conv3)
+    h_bn3   = tf.contrib.layers.batch_norm(h_conv3, is_training=is_training)
 
     W_conv4 = weight_variable([3, 3, 128, 64])
     b_conv4 = bias_variable([64])
