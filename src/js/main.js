@@ -92,7 +92,6 @@ class Main {
                 contentType: 'application/json',
                 data: JSON.stringify(inputs),
                 success: (data) => {
-                    console.log(data);
                     for (let i = 0; i < 3; i++) {
                         $('#output tr').eq(i + 1).find('td').eq(0).text(data.results[0][i]);
                     }

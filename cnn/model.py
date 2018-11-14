@@ -20,8 +20,6 @@ def max_pool_2x2(x):
 def model_number(x, keep_prob, is_training=True):
     return convolutional(x, keep_prob, 51, is_training)
      
-def model_right_wrong(x, keep_prob):
-    return convolutional_right_wrong(x, keep_prob, 2)
     
 def convolutional(x, keep_prob, label_length, is_training=True):
 
@@ -61,7 +59,7 @@ def convolutional(x, keep_prob, label_length, is_training=True):
     y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
     return y_conv, [W_conv1, b_conv1, W_conv2, b_conv2, W_conv3, b_conv3, W_conv4, b_conv4, W_fc1, b_fc1, W_fc2, b_fc2]
     
-def convolutional_right_wrong(x, keep_prob, label_length):
+def convolutional_right_wrong(x, keep_prob):
     W_conv1 = weight_variable([5, 5, 1, 32])
     b_conv1 = bias_variable([32])
 
@@ -84,8 +82,8 @@ def convolutional_right_wrong(x, keep_prob, label_length):
 
     h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
 
-    W_fc2 = weight_variable([1024, label_length])
-    b_fc2 = bias_variable([label_length])
+    W_fc2 = weight_variable([1024, 2])
+    b_fc2 = bias_variable([2])
 
 
     y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
